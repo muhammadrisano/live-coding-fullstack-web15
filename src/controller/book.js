@@ -1,8 +1,8 @@
 require('dotenv').config()
 const bookModel = require('../models/book');
 const MiscHelper = require('../helpers/helpers')
-const redis = require('redis');
-const client = redis.createClient(process.env.PORT_REDIS);
+// const redis = require('redis');
+// const client = redis.createClient(process.env.PORT_REDIS);
 
 module.exports = {
   getBooks: (req, res)=>{
