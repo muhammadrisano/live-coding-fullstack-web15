@@ -3,7 +3,7 @@ const Router = express.Router();
 const bookController = require('../controller/book');
 const authHelper = require('../helpers/auth');
 const cors = require('cors');
-// const redisHelper = require('../helpers/redis');
+// const redisHelper = require('../helpers/giredis');
 
 // multer
 const multer = require('multer');
