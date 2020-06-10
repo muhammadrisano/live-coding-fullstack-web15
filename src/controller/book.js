@@ -1,8 +1,8 @@
 require('dotenv').config()
 const bookModel = require('../models/book');
 const MiscHelper = require('../helpers/helpers')
-const redis = require('redis');
-const client = redis.createClient(process.env.PORT_REDIS);
+// const redis = require('redis');
+// const client = redis.createClient(process.env.PORT_REDIS);
 
 module.exports = {
   getBooks: (req, res)=>{
@@ -25,16 +25,22 @@ module.exports = {
       .catch(err => console.log(err));
   },
   insertBook: (req, res)=>{
+    console.log(req.body)
     const {title, description,  status, author, id_category} = req.body;
     const data = {
       title,
       description,
-      image:`http://localhost:8000/uploads/${req.file.filename}`,
       status,
       author,
       id_category,
       created_at: new Date(),
     }
+    if(req.file){
+      data.image = `http://localhost:8000/uploads/${req.file.filename}`
+    }else{
+      data.image = ''
+    }
+   
     bookModel.insertBook(data)
       .then((result) => {
         res.send(result);
